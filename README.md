@@ -11,10 +11,10 @@ First, do
 
     git clone https://github.com/loveencounterflow/solr-minimal.git
 
-gives a you a directory `solr-minimal` in your current directory. Rename it or move it if you want to; the
-following has to be read accordingly.
+which gives a you a directory `solr-minimal` in your current directory. Rename it or move it if you want to;
+the following has to be read accordingly.
 
-There's a daemon script `solr-minimal/etc-init.de/solr`; if you are on a typical Linux bos,
+There's a daemon script `solr-minimal/etc-init.de/solr`; if you are on a typical Linux box,
 that script should appear as `/etc/init.d/solr`, so make a link:
 
     cd /etc/init.d
