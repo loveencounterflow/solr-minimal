@@ -1,0 +1,68 @@
+#!/bin/sh
+
+
+start () {
+    echo -n "Starting plzdb server..."
+
+    # start daemon
+    daemon --chdir='/var/PLZDB' --command "./node_modules/coffee-script/bin/coffee SERVER.coffee" --respawn --output=/var/log/plzdb/plzdb.log --name=plzdb --verbose
+
+    RETVAL=$?
+    if [ $RETVAL = 0 ]
+    then
+        echo "done."
+    else
+        echo "failed. See error code for more information."
+    fi
+    return $RETVAL
+}
+
+stop () {
+    # stop daemon
+    echo -n "Stopping plzdb..."
+
+    daemon --stop --name=plzdb  --verbose
+    RETVAL=$?
+
+    if [ $RETVAL = 0 ]
+    then
+        echo "done."
+    else
+        echo "failed. See error code for more information."
+    fi
+    return $RETVAL
+}
+
+
+restart () {
+    daemon --restart --name=plzdb  --verbose
+}
+
+
+status () {
+    # report on the status of the daemon
+    daemon --running --verbose --name=plzdb
+    return $?
+}
+
+
+case "$1" in
+    start)
+        start
+    ;;
+    status)
+        status
+    ;;
+    stop)
+        stop
+    ;;
+    restart)
+        restart
+    ;;
+    *)
+        echo $"Usage: plzdb {start|status|stop|restart}"
+        exit 3
+    ;;
+esac
+
+exit $RETVAL
