@@ -13,7 +13,7 @@ start () {
     echo -n "Starting solr..."
 
     # start daemon
-    daemon --chdir='/var/PLZDB/solr-4.4.0/example' --command "java -jar start.jar" --respawn --output=/var/log/solr/solr.log --name=solr --verbose
+    daemon --chdir='/path/to/solr-minimal/example' --command "java -jar start.jar" --respawn --output=/var/log/solr/solr.log --name=solr --verbose
 
     RETVAL=$?
     if [ $RETVAL = 0 ]
